@@ -1,0 +1,63 @@
+<div fxLayoutGap="1.5em" class="padding-15rem">
+  <span>{{welcomeMessage}}</span>
+  <div class="padding-15rem">
+    <div>
+      Filter speaker list: <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </div>
+    <div>
+      <table #table mat-table fxFlex="100" fxLayoutGap="1.5em" multiTemplateDataRows [dataSource]="speakerDataSource">
+        <td mat-cell *matCellDef="let element">
+          <div fxFlexLayout="row" fxLayoutAlign="start center">
+            <div>
+              <mat-icon class="level-arrow-icon">
+                {{element.expanded === true ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}
+              </mat-icon>
+            </div>
+          </div>
+        </td>
+
+        <ng-container matColumnDef="brand">
+          <th mat-header-cell *matHeaderCellDef> Brand </th>
+          <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef> Year </th>
+          <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        </ng-container>
+        <ng-container matColumnDef="cost">
+          <th mat-header-cell *matHeaderCellDef> Cost </th>
+          <td mat-cell *matCellDef="let element"> {{element.cost | boughtFor}} </td>
+        </ng-container>
+        <ng-container matColumnDef="soldFor">
+          <th mat-header-cell *matHeaderCellDef> Sold for </th>
+          <td mat-cell *matCellDef="let element"> {{element.soldFor | soldFor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="11" id="{{element.id}}">
+            <div class="element-detail" [@detailExpand]="(element.expanded) ? 'expanded' : 'collapsed'">
+              <app-speaker-restoration-details-component [speakerDetails]="element.speakerNotes">
+              </app-speaker-restoration-details-component>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" matRipple class="element-row"
+          [class.expanded-row]="element.expanded" (click)="updateExpansion(element)">
+        </tr>
+
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; let i = dataIndex;" class="detail-row"
+          id="{{'speaker'+i}}">
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+</div>
