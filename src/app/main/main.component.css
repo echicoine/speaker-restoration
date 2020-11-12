@@ -1,11 +1,7 @@
 .bold {
     font-weight: 300;
 }
-
-.padding-15rem {
-    padding: 1.5rem;
-}
-
+ 
 .mat-column-expandedDetail {
     background-color: aliceblue;
     padding-left: 0;

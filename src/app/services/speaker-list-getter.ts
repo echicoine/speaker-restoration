@@ -14,8 +14,8 @@ export class SpeakerListGetter {
         'Old English Shine used on cabinets', 'Photos coming soon')));
 
         speakerListRet.push(new Speaker('2', 'Klipsch', 'Tangent 400', '1984', '100', '-',
-        new SpeakerRestorationDetails('No crossover modifications made.', 'Replaced 1 tweeter@$17',
-        'Old English Shine used on cabinets', 'Photos coming soon')));
+        new SpeakerRestorationDetails('(1)33uf, (3) 1.5uf', 'None',
+        'Black paint on cabinets', 'Photos coming soon')));
 
         speakerListRet.push(new Speaker('3', 'Advent', 'Maestro', '1988', '30', '-',
         new SpeakerRestorationDetails('No crossover modifications made.', 'Replaced 1 tweeter@$17',
